@@ -4,18 +4,13 @@ class AdminController extends Zend_Controller_Action
 {
     public function indexAction()
     {
-        // Show all questions.
-        $oQuestions = new Application_Model_Question();
-        //$this->view->oQuestions = $oQuestions->fetchAll();
-
         // Show all groups.
-        $oGroups = new Application_Model_Question_Group();
-        $this->view->oGroups = $oGroups->fetchAll();
+        $oGroups = new Service_Group();
+        $this->view->oGroups = $oGroups->getAllGroups();
 
+        // Show all questions.
         $oServiceQuestion = new Service_Question();
         $this->view->oQuestions = $oServiceQuestion->getAllQuestions();
-
-        //$o = $oGroups->findByFakeId('d3svYeje');
     }
 
     public function addAction()

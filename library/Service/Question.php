@@ -77,6 +77,13 @@ class Service_Question
         return $aQuestions;
     }
 
+    /**
+     * Check if question is assigned to group.
+     *
+     * @param $iGroupId
+     * @param $iQuestionId
+     * @return bool
+     */
     public function isQuestionInGroup($iGroupId, $iQuestionId) {
         $oModelQuestion2Group = new Application_Model_Question_2Group();
         return $oModelQuestion2Group->isInGroup($iGroupId, $iQuestionId);
