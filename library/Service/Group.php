@@ -10,6 +10,12 @@ class Service_Group
         $this->_oModelQuestion2Group = new Application_Model_Question_2Group();
     }
 
+    /**
+     * Add or remove questions.
+     *
+     * @param $iGroupId
+     * @param $iQuestionId
+     */
     public function addRemoveFromGroup($iGroupId, $iQuestionId) {
         $oServiceQuestion = new Service_Question();
 
@@ -21,6 +27,17 @@ class Service_Group
             $oQuestion2Group->setQuestionGroupId($iGroupId);
             $oQuestion2Group->save();
         }
+    }
+
+    /**
+     * Get all groups.
+     *
+     * @return Application_Model_Question_Group|array
+     */
+    public function getAllGroups() {
+        $oGroups = $this->_oModelQuestionGroup->fetchAll();
+
+        return $oGroups;
     }
 
     /**
