@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <?php echo $this->headMeta() ?>
-    <meta name="name" content="Guestbook">
-    <meta name="author" content="Rob Morgan">    
-    <?php echo $this->headTitle('Guestbook')->setSeparator(' - ') ?>
-    <?php echo $this->headLink()->appendStylesheet('/css/bootstrap.css') ?>
-    <?php echo $this->headStyle() ?>
+    <?= $this->headMeta() ?>
+    <meta name="name" content="Quiz">
+    <meta name="author" content="Stefan Probst">
+    <?= $this->headTitle('Quiz')->setSeparator(' - ') ?>
+    <?= $this->headLink()->appendStylesheet('/css/bootstrap.css') ?>
+    <?= $this->headStyle() ?>
 </head>
 <body>
 
 <div class="container">
-<?php echo $this->layout()->content ?>
+    <header class="jumbotron subhead">
+        <div class="container">
+            <h1>Quiz </h1>
+            <p class="lead">Quizsystem für Beyond Diet</p>
+        </div>
+    </header>
+
+    <?php $sControllerName = Zend_Controller_Front::getInstance()->getRequest()->getControllerName(); ?>
+
+    <ul class="nav nav-tabs">
+        <li <?php if ($sControllerName != 'admin') : ?>class="active"<?php endif; ?>><a href="/">Home</a></li>
+        <li <?php if ($sControllerName == 'admin') : ?>class="active"<?php endif; ?>><a href="/admin">Admin</a></li>
+    </ul>
+
+    <?php $oFlashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+
+    <?php if ($oFlashMessenger->hasMessages()): ?>
+        <?php foreach ($oFlashMessenger->getMessages() as $sMessasge): ?>
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <?= $sMessasge ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?= $this->layout()->content ?>
 </div>
 
 </body>

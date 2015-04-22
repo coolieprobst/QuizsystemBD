@@ -16,6 +16,12 @@ set_include_path(implode(PATH_SEPARATOR, array(
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
+// Registrieren des Autoloaders.
+require_once('Zend/Loader/Autoloader.php');
+$oLoader = Zend_Loader_Autoloader::getInstance();
+// Zend mitteilen dass es den Ordner Service gibt.
+$oLoader->registerNamespace('Service_');
+
 // Create application, bootstrap, and run
 $application = new Zend_Application(
     APPLICATION_ENV,

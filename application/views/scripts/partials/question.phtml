@@ -1,0 +1,13 @@
+<div class="well">
+    <h3><?= $this->oQuestion->getQuestion() ?></h3>
+
+    <?php if (count($this->oQuestion->getQuestionOptions()) > 0) : ?>
+        <?php foreach ($this->oQuestion->getQuestionOptions() as $oQuestionOption) : ?>
+            <?= $this->partial('partials/option/' . $oQuestionOption->getTypeName() . '.phtml', array('oEntry' => $oQuestionOption)) ?>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <p>Keine Antwortm&ouml;glichkeiten vorhanden.</p>
+    <?php endif; ?>
+
+    <p class="muted">Achtung: Die Möglichkeit eine Antwort abzusenden wurde noch nicht implementiert.</p>
+</div>
