@@ -1,0 +1,54 @@
+<h2>Fragen</h2>
+
+<a class="btn btn-primary btn-mini pull-right" type="button" href="/admin/question">Neue Frage anlegen</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Frage</th>
+            <th>Antworten vorhanden?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->oQuestions as $oQuestion) : ?>
+            <tr>
+                <td><?= $oQuestion->getQuestion() ?></td>
+                <td><?php if (count($oQuestion->getQuestionOptions()) > 0) : ?>yes<?php else : ?>no<?php endif; ?></td>
+                <td>
+                    <div class="pull-right">
+                        <a class="btn btn-mini" href="/admin/question/id/<?= $oQuestion->getId() ?>">edit</a>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<h2>Gruppen</h2>
+
+<a class="btn btn-primary btn-mini pull-right" type="button" href="/admin/group">Neue Gruppe anlegen</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Gruppenname</th>
+        <th>Fake ID</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->oGroups as $oGroup) : ?>
+        <tr>
+            <td><a href="/index/show/id/<?= $oGroup->getFakeId() ?>"><?= $oGroup->getName() ?></a></td>
+            <td><?= $oGroup->getFakeId() ?></td>
+            <td>
+                <div class="pull-right">
+                    <a class="btn btn-mini" href="/admin/group/id/<?= $oGroup->getFakeId() ?>">edit</a>
+                    <a class="btn btn-mini" href="/admin/add/id/<?= $oGroup->getFakeId() ?>">add questions</a>
+                </div>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,10 @@
+<form action="/">
+    <fieldset>
+        <?php foreach ($this->oEntry->getOptions() as $oEntry) : ?>
+            <label for="<?= $oEntry->getOptionMcId() ?>">
+                <input type="checkbox" value="<?= $oEntry->getText() ?>" id="<?= $oEntry->getOptionMcId() ?>">
+                <?= $oEntry->getText() ?>
+            </label>
+        <?php endforeach; ?>
+    </fieldset>
+</form>

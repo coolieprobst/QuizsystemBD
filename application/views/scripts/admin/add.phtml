@@ -1,0 +1,30 @@
+<h2>Fragenverwaltung Gruppe "<?= $this->oGroup->getName() ?>"</h2>
+
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Frage</th>
+        <th>Antworten vorhanden?</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->oQuestions as $oQuestion) : ?>
+        <tr>
+            <td><?= $oQuestion->getQuestion() ?></td>
+            <td></td>
+            <td>
+                <div class="pull-right">
+                    <?php if ($oQuestion->getIsInGroup()) : ?>
+                        <a class="btn btn-mini" href="/admin/add/id/<?= $this->oGroup->getFakeId() ?>/question/<?= $oQuestion->getId() ?>">Aus Gruppe entfernen</a>
+                    <?php else : ?>
+                        <a class="btn btn-primary btn-mini" href="/admin/add/id/<?= $this->oGroup->getFakeId() ?>/question/<?= $oQuestion->getId() ?>">Zu Gruppe hinzuf&uuml;gen</a>
+                    <?php endif; ?>
+                </div>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
